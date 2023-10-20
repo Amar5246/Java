@@ -123,7 +123,8 @@ public class CustomerMangement {
 						{
 							mp.remove(arr[j]);
 						}
-					}
+					} 
+					//following code using functional programing 
 					break; 
 				case 0: 
 					exit=true; 
