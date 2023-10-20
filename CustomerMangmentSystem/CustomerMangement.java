@@ -72,59 +72,64 @@ public class CustomerMangement {
 					break;
 				case 5: 
 					System.out.println("Details of all customers are"); 
-					
-					for(String a: list)
-					{
-						System.out.println(mp.get(a));
-					} 
+					//conventional way
+					// for(String a: list)
+					// {
+					// 	System.out.println(mp.get(a));
+					// }  
+					mp.forEach((k,v)-> System.out.println(v));
 					break; 
 				case 6: 
 					TreeMap<String,CustMangment> sortedMap=new TreeMap<String, CustMangment>(mp); 
-					for(CustMangment q:sortedMap.values())
-					{
-						System.out.println(q);
-					}
+					// for(CustMangment q:sortedMap.values())
+					// {
+					// 	System.out.println(q);
+					// }
+					sortedMap.forEach((k,v)-> System.out.println(v));
 					break;
 				case 7: 
 					Collections.sort(val1,new CustomerFirstNameComprator());  
 					Map<String,CustMangment> sortedMap1=new LinkedHashMap<>();
-					for(CustMangment w:val1)
-					{
-						String n=w.getEmail(); 
-						sortedMap1.put(n,w);
-					} 
-					for(CustMangment q:sortedMap1.values())
-					{
-						System.out.println(q);
-					}
+					// for(CustMangment w:val1)
+					// {
+					// 	String n=w.getEmail(); 
+					// 	sortedMap1.put(n,w);
+					// } 
+					val1.forEach(i->sortedMap1.put(i.getEmail(),i));
+					// for(CustMangment q:sortedMap1.values())
+					// {
+					// 	System.out.println(q);
+					// } 
+					sortedMap1.forEach((k,v)->System.out.println(v));
 					break; 
 				case 8: 
 					System.out.println("Enter a dob of a customer you want to un subscribe ");
 					LocalDate date=LocalDate.parse("2002-01-24"); 
-					Iterator<String> itr = list.iterator();  
-					String[] arr=new String[10]; 
-					int i=0;
-					while(itr.hasNext())
-					{
-						s=itr.next();  
-						if(mp.get(s).getDob().equals(date))
-						{  
-							arr[i++]=s;
-							System.out.println("Removed customer succesfully ");
-						}
-					} 
-					for(int j=0;j<10;j++)
-					{
-						if(arr[j]==null)
-						{
-							continue;
-						}  
-						else
-						{
-							mp.remove(arr[j]);
-						}
-					} 
-					//following code using functional programing 
+					// Iterator<String> itr = list.iterator();  
+					// String[] arr=new String[10]; 
+					// int i=0;
+					// while(itr.hasNext())
+					// {
+					// 	s=itr.next();  
+					// 	if(mp.get(s).getDob().equals(date))
+					// 	{  
+					// 		arr[i++]=s;
+					// 		System.out.println("Removed customer succesfully ");
+					// 	}
+					// } 
+					// for(int j=0;j<10;j++)
+					// {
+					// 	if(arr[j]==null)
+					// 	{
+					// 		continue;
+					// 	}  
+					// 	else
+					// 	{
+					// 		mp.remove(arr[j]);
+					// 	}
+					// } 
+					//following code using functional programing  
+					list.removeIf(k->mp.get(k).getDob().equals(date));
 					break; 
 				case 0: 
 					exit=true; 
