@@ -12,7 +12,8 @@ import utils.*;
 public class CustomerMangement {
 
 	public static void main(String[] args) {
-		Scanner sc=new Scanner(System.in); 
+		Scanner sc=new Scanner(System.in);  
+		//creating map to stor a customers details 
 		Map<String,CustMangment> mp=CustomerUtils.custInfo();
 		Set<String> list=mp.keySet(); 
 		Collection<CustMangment> val=mp.values(); 
@@ -35,7 +36,7 @@ public class CustomerMangement {
 			{
 				switch(sc.nextInt())
 				{
-				case 1: 
+				case 1: //adding a customer/sign up
 					System.out.println("Enter customer details respectively:");
 					System.out.println("first_name,last_name,email,password,reg_amount,dob(yyy-mm-dd),plan");   
 					String email=sc.next();
@@ -44,7 +45,7 @@ public class CustomerMangement {
 					mp.put(email,customer); 
 					System.out.println("customer added succfully"); 
 					break; 
-				case 2: 
+				case 2: // Sign in Customer 
 					System.out.println("Enter your email id");  
 					String mail=sc.next();
 					findEmailOfCustomer(mail,list);  
@@ -53,7 +54,7 @@ public class CustomerMangement {
 					String pass=sc.next();
 					cheackPassword(customers1,pass);
 					break; 
-				case 3: 
+				case 3: //Change password functionality
 					 System.out.println("Enter email id associated with your account to change password"); 
 					 String s= sc.next();
 					 if(!(list.contains(s)))
@@ -65,12 +66,12 @@ public class CustomerMangement {
 					 customer.setPassword(sc.next()); 
 					 System.out.println("Password changed successfully");
 					 break;
-				case 4:
+				case 4: //un-subscribing customer 
 					System.out.println("Enter the email id of the customer you want to un-subscribe");
 					 s= sc.next(); 
 					mp.remove(s); 
 					break;
-				case 5: 
+				case 5: //printing all details of customer 
 					System.out.println("Details of all customers are"); 
 					//conventional way
 					// for(String a: list)
@@ -79,15 +80,16 @@ public class CustomerMangement {
 					// }  
 					mp.forEach((k,v)-> System.out.println(v));
 					break; 
-				case 6: 
+				case 6: //sorting according to key 
 					TreeMap<String,CustMangment> sortedMap=new TreeMap<String, CustMangment>(mp); 
+					
 					// for(CustMangment q:sortedMap.values())
 					// {
 					// 	System.out.println(q);
 					// }
 					sortedMap.forEach((k,v)-> System.out.println(v));
 					break;
-				case 7: 
+				case 7: //sorting according value 
 					Collections.sort(val1,new CustomerFirstNameComprator());  
 					Map<String,CustMangment> sortedMap1=new LinkedHashMap<>();
 					// for(CustMangment w:val1)
@@ -102,7 +104,7 @@ public class CustomerMangement {
 					// } 
 					sortedMap1.forEach((k,v)->System.out.println(v));
 					break; 
-				case 8: 
+				case 8: //un-subscribing customer accoring a value baased condition
 					System.out.println("Enter a dob of a customer you want to un subscribe ");
 					LocalDate date=LocalDate.parse("2002-01-24"); 
 					// Iterator<String> itr = list.iterator();  
